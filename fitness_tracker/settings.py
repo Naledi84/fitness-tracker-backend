@@ -3,8 +3,20 @@ from pathlib import Path
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = 'django-insecure-sb_#)aj$btfnzjgbw#lwx-73=&(n!g$&0f%_1@7vs1zvgh9(lz'
-DEBUG = True
-ALLOWED_HOSTS = ["*"]
+DEBUG = False
+ALLOWED_HOSTS = [
+    "fitness-tracker-backend.onrender.com",
+    "localhost",
+]
+
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:3000",
+    "https://fitness-tracker-frontend-2025.netlify.app",
+]
+
+CSRF_TRUSTED_ORIGINS = [
+    "https://fitness-tracker-frontend-2025.netlify.app",
+]
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -18,6 +30,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'rest_framework_simplejwt',
     'corsheaders',
+     
 
     # Your app
     'tracker',
@@ -34,15 +47,16 @@ REST_FRAMEWORK = {
     "PAGE_SIZE": 10,
 }
 
+
 MIDDLEWARE = [
-    'corsheaders.middleware.CorsMiddleware',  # must be first
-    'django.middleware.security.SecurityMiddleware',
-    'django.contrib.sessions.middleware.SessionMiddleware',
-    'django.middleware.common.CommonMiddleware',
-    'django.middleware.csrf.CsrfViewMiddleware',
-    'django.contrib.auth.middleware.AuthenticationMiddleware',
-    'django.contrib.messages.middleware.MessageMiddleware',
-    'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    "corsheaders.middleware.CorsMiddleware",
+    "django.middleware.security.SecurityMiddleware",
+    "django.contrib.sessions.middleware.SessionMiddleware",
+    "django.middleware.common.CommonMiddleware",
+    "django.middleware.csrf.CsrfViewMiddleware",
+    "django.contrib.auth.middleware.AuthenticationMiddleware",
+    "django.contrib.messages.middleware.MessageMiddleware",
+    "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
 
 CORS_ALLOWED_ORIGINS = [
