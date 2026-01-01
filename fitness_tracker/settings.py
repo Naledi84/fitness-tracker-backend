@@ -1,14 +1,20 @@
 from pathlib import Path
+import os
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-SECRET_KEY = 'django-insecure-sb_#)aj$btfnzjgbw#lwx-73=&(n!g$&0f%_1@7vs1zvgh9(lz'
-DEBUG = False
+# SECURITY WARNING: keep the secret key used in production secret!
+SECRET_KEY = os.environ.get("DJANGO_SECRET_KEY", "django-insecure-sb_#)aj$btfnzjgbw#lwx-73=&(n!g$&0f%_1@7vs1zvgh9(lz")
+
+# SECURITY WARNING: don't run with debug turned on in production!
+DEBUG = os.environ.get("DJANGO_DEBUG", "False") == "True"
+
 ALLOWED_HOSTS = [
-    "fitness-tracker-backend.onrender.com",
+    "fitness-tracker-backend-1wfe.onrender.com",
     "localhost",
 ]
 
+# CORS settings
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000",
     "https://fitness-tracker-frontend-2025.netlify.app",
@@ -30,7 +36,6 @@ INSTALLED_APPS = [
     'rest_framework',
     'rest_framework_simplejwt',
     'corsheaders',
-     
 
     # Your app
     'tracker',
@@ -47,7 +52,6 @@ REST_FRAMEWORK = {
     "PAGE_SIZE": 10,
 }
 
-
 MIDDLEWARE = [
     "corsheaders.middleware.CorsMiddleware",
     "django.middleware.security.SecurityMiddleware",
@@ -57,11 +61,6 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
-]
-
-CORS_ALLOWED_ORIGINS = [
-    "http://localhost:3000",
-    "https://fitness-tracker-frontend-2025.netlify.app",
 ]
 
 ROOT_URLCONF = 'fitness_tracker.urls'
@@ -107,9 +106,3 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 AUTH_USER_MODEL = 'tracker.User'
-
-
-
-
-
-
